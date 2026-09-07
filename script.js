@@ -821,6 +821,7 @@ const database = [
 // DOM要素の取得
 const searchInput = document.getElementById('searchInput');
 const searchButton = document.getElementById('searchButton');
+const clearButton = document.getElementById('clearButton');
 const resultsContainer = document.getElementById('results');
 
 // 検索実行関数
@@ -876,6 +877,12 @@ searchInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
         performSearch();
     }
+});
+
+// クリアボタンクリック
+clearButton.addEventListener('click', () => {
+    searchInput.value = '';
+    performSearch();
 });
 
 // ページ読み込み時に自動的にすべての問題を表示
