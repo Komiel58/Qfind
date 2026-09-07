@@ -819,10 +819,7 @@ const database = [
 ];
 
 // DOM要素の取得
-const searchInput = document.getElementById('searchInput');
-const searchButton = document.getElementById('searchButton');
-const clearButton = document.getElementById('clearButton');
-const resultsContainer = document.getElementById('results');
+let searchInput, searchButton, clearButton, resultsContainer;
 
 // 検索実行関数
 function performSearch() {
@@ -871,19 +868,28 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
-// イベントリスナーの設定
-searchButton.addEventListener('click', performSearch);
-searchInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
+// ページ読み込み時に初期化
+window.addEventListener('DOMContentLoaded', () => {
+    // DOM要素の取得
+    searchInput = document.getElementById('searchInput');
+    searchButton = document.getElementById('searchButton');
+    clearButton = document.getElementById('clearButton');
+    resultsContainer = document.getElementById('results');
+    
+    // イベントリスナーの設定
+    searchButton.addEventListener('click', performSearch);
+    searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            performSearch();
+        }
+    });
+    
+    // クリアボタンクリック
+    clearButton.addEventListener('click', () => {
+        searchInput.value = '';
         performSearch();
-    }
-});
-
-// クリアボタンクリック
-clearButton.addEventListener('click', () => {
-    searchInput.value = '';
+    });
+    
+    // 自動的にすべての問題を表示
     performSearch();
 });
-
-// ページ読み込み時に自動的にすべての問題を表示
-window.addEventListener('DOMContentLoaded', performSearch);
