@@ -52,6 +52,15 @@ header h1 {
     cursor: pointer;
 }
 
+.clear-button {
+    padding: 10px 20px;
+    background: #666;
+    color: white;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+}
+
 .filter-section {
     display: flex;
     gap: 15px;
